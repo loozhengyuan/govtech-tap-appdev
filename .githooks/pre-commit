@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Ensures that script exits if error is detected
+set -e
+
+# Activate virtual environment
+source venv/bin/activate
+
+# Runs linter on commit
+make lint
