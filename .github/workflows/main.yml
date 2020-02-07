@@ -1,0 +1,81 @@
+name: Main Workflow
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    name: Test on Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - 3.6
+          - 3.7
+          - 3.8
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v1
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+        architecture: x64
+
+    - name: Install dependencies
+      run: |
+        make install
+
+    - name: Lint with flake8
+      run: |
+        make lint
+
+    - name: Run system checks
+      run: |
+        make check
+
+    - name: Setup database migrations
+      run: |
+        make migrate
+
+    - name: Test with pytest
+      run: |
+        make test
+
+  # build:
+  #   name: Build & Push Docker image
+  #   needs: test
+  #   if: github.ref == 'refs/heads/master'
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 3
+  #   env:
+  #     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+  #   steps:
+  #   - name: Checkout branch
+  #     uses: actions/checkout@v1
+
+  #   - name: Build Docker image
+  #     run: |
+  #       docker build --tag ${GITHUB_REPOSITORY}:${GITHUB_SHA} .
+
+  #   - name: Tag Docker image
+  #     run: |
+  #       docker tag ${GITHUB_REPOSITORY}:${GITHUB_SHA} ${GITHUB_REPOSITORY}:latest
+
+  #   - name: Check image tags
+  #     run: |
+  #       docker images ${GITHUB_REPOSITORY}
+
+  #   - name: Push image to Docker Hub
+  #     run: |
+  #       echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+  #       docker push ${GITHUB_REPOSITORY}:${GITHUB_SHA}
+  #       docker push ${GITHUB_REPOSITORY}:latest
+  #       docker logout
