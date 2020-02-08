@@ -1,0 +1,93 @@
+[
+    {
+        "model": "api.housingtype",
+        "pk": 1,
+        "fields": {
+            "name": "HDB"
+        }
+    },
+    {
+        "model": "api.housingtype",
+        "pk": 2,
+        "fields": {
+            "name": "Condominium"
+        }
+    },
+    {
+        "model": "api.housingtype",
+        "pk": 3,
+        "fields": {
+            "name": "Landed"
+        }
+    },
+    {
+        "model": "api.gender",
+        "pk": 1,
+        "fields": {
+            "name": "Male"
+        }
+    },
+    {
+        "model": "api.gender",
+        "pk": 2,
+        "fields": {
+            "name": "Female"
+        }
+    },
+    {
+        "model": "api.gender",
+        "pk": 3,
+        "fields": {
+            "name": "Non-binary"
+        }
+    },
+    {
+        "model": "api.maritalstatus",
+        "pk": 1,
+        "fields": {
+            "name": "Single"
+        }
+    },
+    {
+        "model": "api.maritalstatus",
+        "pk": 2,
+        "fields": {
+            "name": "Married"
+        }
+    },
+    {
+        "model": "api.maritalstatus",
+        "pk": 3,
+        "fields": {
+            "name": "Divorced"
+        }
+    },
+    {
+        "model": "api.maritalstatus",
+        "pk": 4,
+        "fields": {
+            "name": "Widowed"
+        }
+    },
+    {
+        "model": "api.occupationtype",
+        "pk": 1,
+        "fields": {
+            "name": "Employed"
+        }
+    },
+    {
+        "model": "api.occupationtype",
+        "pk": 2,
+        "fields": {
+            "name": "Student"
+        }
+    },
+    {
+        "model": "api.occupationtype",
+        "pk": 3,
+        "fields": {
+            "name": "Unemployed"
+        }
+    }
+]
