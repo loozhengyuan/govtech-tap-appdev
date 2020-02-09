@@ -26,6 +26,7 @@ class FamilyMemberSerializer(serializers.ModelSerializer):
 
 class HouseholdSerializer(serializers.ModelSerializer):
     housing_type = serializers.SlugRelatedField(slug_field="name", queryset=HousingType.objects.all())
+    household_income = serializers.IntegerField()  # TODO: Remove after debug
     members = FamilyMemberSerializer(many=True, required=False, allow_null=True)
 
     class Meta:
@@ -33,6 +34,7 @@ class HouseholdSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "housing_type",
+            "household_income",    # TODO: Remove after debug
             "members",
         )
 
