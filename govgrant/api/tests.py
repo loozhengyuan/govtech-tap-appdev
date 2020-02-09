@@ -1,3 +1,4 @@
+import json
 from collections import OrderedDict
 
 from django.test import TestCase
@@ -7,10 +8,9 @@ from rest_framework.test import APITestCase
 from govgrant.api.models import EnumModel, HousingType, Household, Gender, MaritalStatus, OccupationType, FamilyMember
 
 
-# List of initial data fixtures
-INITIAL_DATA_FIXTURES = (
-    "initial.json",
-)
+# List of data fixtures
+INITIAL_DATA_FIXTURES = "initial.json"
+SAMPLE_DATA_FIXTURES = "sample.json"
 
 
 class HousingTypeTestCase(TestCase):
@@ -31,7 +31,9 @@ class HouseholdTestCase(TestCase):
     """TestCases for Household model"""
 
     # Load test fixtures
-    fixtures = INITIAL_DATA_FIXTURES
+    fixtures = (
+        INITIAL_DATA_FIXTURES,
+    )
 
     def setUp(self):
         housing_type = HousingType.objects.get(pk=1)
@@ -88,7 +90,9 @@ class FamilyMemberTestCase(TestCase):
     """TestCases for FamilyMember model"""
 
     # Load test fixtures
-    fixtures = INITIAL_DATA_FIXTURES
+    fixtures = (
+        INITIAL_DATA_FIXTURES,
+    )
 
     def setUp(self):
         self.name = "Tan Ah Kow"
@@ -141,7 +145,9 @@ class HouseholdEndpointTestCase(APITestCase):
     """TestCases for /household/ endpoint"""
 
     # Load test fixtures
-    fixtures = INITIAL_DATA_FIXTURES
+    fixtures = (
+        INITIAL_DATA_FIXTURES,
+    )
 
     def test_if_http_post_request_creates_a_household(self):
         """Test if HTTP POST request creates a household"""
@@ -300,3 +306,236 @@ class HouseholdEndpointTestCase(APITestCase):
         # Assert API response
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected)
+
+
+class GrantEligibilityTestCase(APITestCase):
+    """TestCases for filtering Household resource using query parameters"""
+
+    # Load test fixtures
+    fixtures = (
+        INITIAL_DATA_FIXTURES,
+        SAMPLE_DATA_FIXTURES,
+    )
+
+    # TODO: datetime.date.today() in views.py needs to be mocked so
+    # that the tests remain consistent regardless of the current date
+
+    def test_if_endpoint_returns_eligible_households_for_student_encouragement_bonus(self):
+        """Test if endpoint returns eligible households for Student Encouragement Bonus"""
+
+        # Create query params
+        params = {
+            "max_age": 16,
+            "max_income": 150000,
+        }
+        expected = [
+            {
+                "id": 1,
+                "housing_type": "Landed",
+                "members": [
+                    {
+                        "id": 1,
+                        "name": "Paul Tan",
+                        "gender": "Male",
+                        "marital_status": "Single",
+                        "spouse": None,
+                        "occupation_type": "Employed",
+                        "annual_income": 10000,
+                        "dob": "2010-01-01",
+                        "household": 1,
+                    },
+                ],
+            },
+        ]
+
+        # Execute API call
+        response = self.client.get(
+            path="/households/",
+            data=params,
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(json.loads(response.content), expected)
+
+    def test_if_endpoint_returns_eligible_households_for_family_togetherness_scheme(self):
+        """Test if endpoint returns eligible households for Family Togetherness Scheme"""
+
+        # Create query params
+        params = {
+            "with_spouse": True,
+            "max_age": 18,
+        }
+        expected = [
+            {
+                "id": 2,
+                "housing_type": "HDB",
+                "members": [
+                    {
+                        "id": 2,
+                        "name": "John Doe",
+                        "gender": "Male",
+                        "marital_status": "Married",
+                        "spouse": "Mary Doe",
+                        "occupation_type": "Employed",
+                        "annual_income": 88000,
+                        "dob": "1980-01-01",
+                        "household": 2,
+                    },
+                    {
+                        "id": 3,
+                        "name": "Mary Doe",
+                        "gender": "Female",
+                        "marital_status": "Married",
+                        "spouse": "John Doe",
+                        "occupation_type": "Employed",
+                        "annual_income": 88000,
+                        "dob": "2010-01-01",
+                        "household": 2,
+                    },
+                ],
+            },
+        ]
+
+        # Execute API call
+        response = self.client.get(
+            path="/households/",
+            data=params,
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(json.loads(response.content), expected)
+
+    def test_if_endpoint_returns_eligible_households_for_elder_bonus(self):
+        """Test if endpoint returns eligible households for Elder Bonus"""
+
+        # Create query params
+        params = {
+            "min_age": 50,
+        }
+        expected = [
+            {
+                "id": 3,
+                "housing_type": "Condominium",
+                "members": [
+                    {
+                        "id": 4,
+                        "name": "Tan Ah Kow",
+                        "gender": "Male",
+                        "marital_status": "Single",
+                        "spouse": None,
+                        "occupation_type": "Employed",
+                        "annual_income": 10000,
+                        "dob": "1960-01-01",
+                        "household": 3,
+                    },
+                ],
+            },
+        ]
+
+        # Execute API call
+        response = self.client.get(
+            path="/households/",
+            data=params,
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(json.loads(response.content), expected)
+
+    def test_if_endpoint_returns_eligible_households_for_baby_sunshine_grant(self):
+        """Test if endpoint returns eligible households for Baby Sunshine Grant"""
+
+        # Create query params
+        params = {
+            "max_age": 5,
+        }
+        expected = [
+            {
+                "id": 4,
+                "housing_type": "HDB",
+                "members": [
+                    {
+                        "id": 5,
+                        "name": "Linus Torvalds",
+                        "gender": "Male",
+                        "marital_status": "Single",
+                        "spouse": None,
+                        "occupation_type": "Employed",
+                        "annual_income": 200000,
+                        "dob": "2019-01-01",
+                        "household": 4,
+                    },
+                ],
+            },
+        ]
+
+        # Execute API call
+        response = self.client.get(
+            path="/households/",
+            data=params,
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(json.loads(response.content), expected)
+
+    def test_if_endpoint_returns_eligible_households_for_yolo_gst_grant(self):
+        """Test if endpoint returns eligible households for YOLO GST Grant"""
+
+        # Create query params
+        params = {
+            "max_income": 100000,
+        }
+        expected = [
+            {
+                "id": 1,
+                "housing_type": "Landed",
+                "members": [
+                    {
+                        "id": 1,
+                        "name": "Paul Tan",
+                        "gender": "Male",
+                        "marital_status": "Single",
+                        "spouse": None,
+                        "occupation_type": "Employed",
+                        "annual_income": 10000,
+                        "dob": "2010-01-01",
+                        "household": 1,
+                    },
+                ],
+            },
+            {
+                "id": 3,
+                "housing_type": "Condominium",
+                "members": [
+                    {
+                        "id": 4,
+                        "name": "Tan Ah Kow",
+                        "gender": "Male",
+                        "marital_status": "Single",
+                        "spouse": None,
+                        "occupation_type": "Employed",
+                        "annual_income": 10000,
+                        "dob": "1960-01-01",
+                        "household": 3,
+                    },
+                ],
+            },
+        ]
+
+        # Execute API call
+        response = self.client.get(
+            path="/households/",
+            data=params,
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(json.loads(response.content), expected)

@@ -1,0 +1,100 @@
+[
+    {
+        "model": "api.household",
+        "pk": 1,
+        "fields": {
+            "housing_type": 3
+        }
+    },
+    {
+        "model": "api.household",
+        "pk": 2,
+        "fields": {
+            "housing_type": 1
+        }
+    },
+    {
+        "model": "api.household",
+        "pk": 3,
+        "fields": {
+            "housing_type": 2
+        }
+    },
+    {
+        "model": "api.household",
+        "pk": 4,
+        "fields": {
+            "housing_type": 1
+        }
+    },
+    {
+        "model": "api.familymember",
+        "pk": 1,
+        "fields": {
+            "name": "Paul Tan",
+            "dob": "2010-01-01",
+            "gender": 1,
+            "marital_status": 1,
+            "spouse": null,
+            "occupation_type": 1,
+            "annual_income": 10000,
+            "household": 1
+        }
+    },
+    {
+        "model": "api.familymember",
+        "pk": 2,
+        "fields": {
+            "name": "John Doe",
+            "dob": "1980-01-01",
+            "gender": 1,
+            "marital_status": 2,
+            "spouse": 3,
+            "occupation_type": 1,
+            "annual_income": 88000,
+            "household": 2
+        }
+    },
+    {
+        "model": "api.familymember",
+        "pk": 3,
+        "fields": {
+            "name": "Mary Doe",
+            "dob": "2010-01-01",
+            "gender": 2,
+            "marital_status": 2,
+            "spouse": 2,
+            "occupation_type": 1,
+            "annual_income": 88000,
+            "household": 2
+        }
+    },
+    {
+        "model": "api.familymember",
+        "pk": 4,
+        "fields": {
+            "name": "Tan Ah Kow",
+            "dob": "1960-01-01",
+            "gender": 1,
+            "marital_status": 1,
+            "spouse": null,
+            "occupation_type": 1,
+            "annual_income": 10000,
+            "household": 3
+        }
+    },
+    {
+        "model": "api.familymember",
+        "pk": 5,
+        "fields": {
+            "name": "Linus Torvalds",
+            "dob": "2019-01-01",
+            "gender": 1,
+            "marital_status": 1,
+            "spouse": null,
+            "occupation_type": 1,
+            "annual_income": 200000,
+            "household": 4
+        }
+    }
+]
