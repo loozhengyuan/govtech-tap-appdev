@@ -30,4 +30,4 @@ USER docker
 # Set entrypoint
 RUN chmod a+x entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
-CMD ["python", "manage.py", "runserver"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
