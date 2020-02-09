@@ -1,4 +1,8 @@
+from collections import OrderedDict
+
 from django.test import TestCase
+from rest_framework import status
+from rest_framework.test import APITestCase
 
 from govgrant.api.models import EnumModel, HousingType, Household, Gender, MaritalStatus, OccupationType, FamilyMember
 
@@ -131,3 +135,168 @@ class FamilyMemberTestCase(TestCase):
         second.save()
         self.assertEqual(first.spouse, second)
         self.assertEqual(second.spouse, first)
+
+
+class HouseholdEndpointTestCase(APITestCase):
+    """TestCases for /household/ endpoint"""
+
+    # Load test fixtures
+    fixtures = INITIAL_DATA_FIXTURES
+
+    def test_if_http_post_request_creates_a_household(self):
+        """Test if HTTP POST request creates a household"""
+
+        # Create data payload
+        data = {
+            "housing_type": "Landed",
+        }
+        expected = {
+            "id": 1,
+            "housing_type": "Landed",
+            "members": [],
+        }
+
+        # Execute API call
+        response = self.client.post(
+            path="/households/",
+            data=data,
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data, expected)
+
+    def test_if_http_get_request_lists_all_households(self):
+        """Test if HTTP GET request lists all households"""
+
+        # Create sample data
+        housing_type = HousingType.objects.get(name="Landed")
+        Household.objects.create(
+            housing_type=housing_type,
+        )
+        expected = [
+            OrderedDict(
+                {
+                    "id": 1,
+                    "housing_type": "Landed",
+                    "members": [],
+                }
+            ),
+        ]
+
+        # Execute API call
+        response = self.client.get(
+            path="/households/",
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, expected)
+
+    def test_if_http_patch_request_adds_family_member_to_a_household(self):
+        """Test if HTTP PATCH request adds family member to a household"""
+
+        # Create a single Household object first
+        housing_type = HousingType.objects.get(name="Landed")
+        Household.objects.create(
+            housing_type=housing_type,
+        )
+
+        # TODO: Assert that a member does not already exist
+        # TODO: Assert operation appends instead of overwrite
+
+        # Create data payload
+        data = {
+            "members": [
+                {
+                    "name": "Tan Ah Kow",
+                    "gender": "Male",
+                    "marital_status": "Single",
+                    "spouse": None,
+                    "occupation_type": "Employed",
+                    "annual_income": 48000,
+                    "dob": "2019-10-01",
+                },
+            ]
+        }
+        expected = {
+            "id": 1,                                # Added in response
+            "housing_type": "Landed",               # Added in response
+            "members": [
+                {
+                    "id": 1,                        # Added in response
+                    "name": "Tan Ah Kow",
+                    "gender": "Male",
+                    "marital_status": "Single",
+                    "spouse": None,
+                    "occupation_type": "Employed",
+                    "annual_income": 48000,
+                    "dob": "2019-10-01",
+                    "household": 1,                 # Added in response
+                },
+            ]
+        }
+
+        # Execute API call
+        response = self.client.patch(
+            path="/households/1/",
+            data=data,
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, expected)
+
+    def test_if_http_get_request_lists_all_members_of_a_household(self):
+        """Test if HTTP GET request lists all members of a household"""
+
+        # Create a single Household object and associated FamilyMember objects
+        housing_type = HousingType.objects.get(name="Landed")
+        household = Household.objects.create(
+            housing_type=housing_type,
+        )
+        gender = Gender.objects.get(name="Male")
+        marital_status = MaritalStatus.objects.get(name="Single")
+        occupation_type = OccupationType.objects.get(name="Employed")
+        FamilyMember.objects.create(
+            name="Tan Ah Kow",
+            dob="2019-10-01",
+            gender=gender,
+            marital_status=marital_status,
+            spouse=None,
+            occupation_type=occupation_type,
+            annual_income=48000,
+            household=household,
+        )
+
+        # Create data payload
+        expected = {
+            "id": 1,
+            "housing_type": "Landed",
+            "members": [
+                {
+                    "id": 1,
+                    "name": "Tan Ah Kow",
+                    "gender": "Male",
+                    "marital_status": "Single",
+                    "spouse": None,
+                    "occupation_type": "Employed",
+                    "annual_income": 48000,
+                    "dob": "2019-10-01",
+                    "household": 1,
+                },
+            ]
+        }
+
+        # Execute API call
+        response = self.client.get(
+            path="/households/1/",
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, expected)
