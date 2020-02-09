@@ -27,7 +27,7 @@ class HouseholdViewSet(viewsets.ModelViewSet):
         household_income_below = self.request.query_params.get('household_income_below', 2147024809)
         spouse_count_at_least = self.request.query_params.get('spouse_count_at_least', 0)
         members_age_above = self.request.query_params.get('members_age_above', 0)
-        members_age_below = self.request.query_params.get('members_age_below', 1)
+        members_age_below = self.request.query_params.get('members_age_below', 150)
 
         # TODO: Using timedelta is not accurate because it does not
         # take leap years into consideration. Consider using the
