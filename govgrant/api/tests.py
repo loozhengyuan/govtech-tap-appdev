@@ -7,10 +7,9 @@ from rest_framework.test import APITestCase
 from govgrant.api.models import EnumModel, HousingType, Household, Gender, MaritalStatus, OccupationType, FamilyMember
 
 
-# List of initial data fixtures
-INITIAL_DATA_FIXTURES = (
-    "initial.json",
-)
+# List of data fixtures
+INITIAL_DATA_FIXTURES = "initial.json"
+SAMPLE_DATA_FIXTURES = "sample.json"
 
 
 class HousingTypeTestCase(TestCase):
@@ -31,7 +30,9 @@ class HouseholdTestCase(TestCase):
     """TestCases for Household model"""
 
     # Load test fixtures
-    fixtures = INITIAL_DATA_FIXTURES
+    fixtures = (
+        INITIAL_DATA_FIXTURES,
+    )
 
     def setUp(self):
         housing_type = HousingType.objects.get(pk=1)
@@ -88,7 +89,9 @@ class FamilyMemberTestCase(TestCase):
     """TestCases for FamilyMember model"""
 
     # Load test fixtures
-    fixtures = INITIAL_DATA_FIXTURES
+    fixtures = (
+        INITIAL_DATA_FIXTURES,
+    )
 
     def setUp(self):
         self.name = "Tan Ah Kow"
@@ -141,7 +144,9 @@ class HouseholdEndpointTestCase(APITestCase):
     """TestCases for /household/ endpoint"""
 
     # Load test fixtures
-    fixtures = INITIAL_DATA_FIXTURES
+    fixtures = (
+        INITIAL_DATA_FIXTURES,
+    )
 
     def test_if_http_post_request_creates_a_household(self):
         """Test if HTTP POST request creates a household"""
