@@ -1,5 +1,4 @@
 import json
-from collections import OrderedDict
 
 from django.test import TestCase
 from rest_framework import status
@@ -171,7 +170,7 @@ class HouseholdEndpointTestCase(APITestCase):
 
         # Assert API response
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.data, expected)
+        self.assertEqual(json.loads(response.content), expected)
 
     def test_if_http_get_request_lists_all_households(self):
         """Test if HTTP GET request lists all households"""
@@ -182,13 +181,11 @@ class HouseholdEndpointTestCase(APITestCase):
             housing_type=housing_type,
         )
         expected = [
-            OrderedDict(
-                {
-                    "id": 1,
-                    "housing_type": "Landed",
-                    "members": [],
-                }
-            ),
+            {
+                "id": 1,
+                "housing_type": "Landed",
+                "members": [],
+            },
         ]
 
         # Execute API call
@@ -199,7 +196,7 @@ class HouseholdEndpointTestCase(APITestCase):
 
         # Assert API response
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data, expected)
+        self.assertEqual(json.loads(response.content), expected)
 
     def test_if_http_patch_request_adds_family_member_to_a_household(self):
         """Test if HTTP PATCH request adds family member to a household"""
@@ -254,7 +251,7 @@ class HouseholdEndpointTestCase(APITestCase):
 
         # Assert API response
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data, expected)
+        self.assertEqual(json.loads(response.content), expected)
 
     def test_if_http_get_request_lists_all_members_of_a_household(self):
         """Test if HTTP GET request lists all members of a household"""
@@ -305,7 +302,7 @@ class HouseholdEndpointTestCase(APITestCase):
 
         # Assert API response
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data, expected)
+        self.assertEqual(json.loads(response.content), expected)
 
 
 class GrantEligibilityTestCase(APITestCase):
