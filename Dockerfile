@@ -19,6 +19,8 @@ RUN pip install -r requirements.txt
 COPY govgrant/ govgrant/
 COPY manage.py manage.py
 COPY entrypoint.sh entrypoint.sh
+COPY initial.json initial.json
+COPY sample.json sample.json
 
 # Create unprivileged system user
 # The -l flag is used as a workaround due to an unresolved bug:
