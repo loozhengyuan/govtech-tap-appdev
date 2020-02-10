@@ -409,11 +409,11 @@ This endpoint deletes a member from its associated household.
 **Example**
 
 ```sh
-curl 127.0.0.1:8000/households/1/remove_member \
+curl 127.0.0.1:8000/households/1/remove_member/ \
     -H 'Content-Type: application/json' \
     -H 'Accept: application/json; indent=4' \
     -X DELETE \
-    -d '{"name":"Paul Tan 1","gender":"Male","marital_status":"Single","spouse":null,"occupation_type":"Employed","annual_income":10000,"dob":"2010-01-01"}'
+    -d '{"name":"Paul Tan","gender":"Male","marital_status":"Single","spouse":null,"occupation_type":"Employed","annual_income":10000,"dob":"2010-01-01"}'
 ```
 
 _NOTE: This endpoint has not API response: `HTTP 204 NO CONTENT`_
