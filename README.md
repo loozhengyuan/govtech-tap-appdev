@@ -21,11 +21,11 @@ Run the server by executing `docker run`:
 ```sh
 docker run -it \
     -p 8000:8000 \
-    -e SECRET_KEY=<YOUR_SECRET_KEY_HERE> \
+    -e SECRET_KEY=secret \
     loozhengyuan/govtech-tap-appdev
 ```
 
-_NOTE: Make sure you generate a secret key and substitute `<YOUR_SECRET_KEY_HERE>` in the above._
+_NOTE: Make sure you generate a secret key and substitute the `secret` placeholder above._
 
 ### Installing from source
 
