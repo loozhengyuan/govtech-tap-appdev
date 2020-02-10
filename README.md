@@ -374,7 +374,7 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&max_income=100000' \
 
 # Endpoints
 
-## `POST /households/`
+### `POST /households/`
 
 This endpoint creates an instance of the Household resource.
 
@@ -398,7 +398,7 @@ curl 127.0.0.1:8000/households/ \
 
 </details>
 
-## `POST /households/<id>/add_member/`
+### `POST /households/<id>/add_member/`
 
 This endpoint appends FamilyMember instance to a specific Household instance.
 
@@ -428,7 +428,7 @@ curl 127.0.0.1:8000/households/1/add_member/ \
 
 </details>
 
-## `GET /households/`
+### `GET /households/`
 
 This endpoint lists all households and its associated members.
 
@@ -464,7 +464,7 @@ curl 127.0.0.1:8000/households/ \
 
 </details>
 
-## `GET /households/<id>/`
+### `GET /households/<id>/`
 
 This endpoint shows the details of a household and its related members.
 
@@ -498,7 +498,7 @@ curl 127.0.0.1:8000/households/1/ \
 
 </details>
 
-## `DELETE /households/<id>/`
+### `DELETE /households/<id>/`
 
 This endpoint deletes a household and its related members.
 
@@ -516,7 +516,7 @@ _NOTE: This endpoint has no API response: `HTTP 204 NO CONTENT`_
 
 </details>
 
-## `DELETE /households/<id>/remove_member`
+### `DELETE /households/<id>/remove_member`
 
 This endpoint deletes a member from its associated household.
 
