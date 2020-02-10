@@ -58,7 +58,7 @@ class FamilyMember(models.Model):
     spouse = models.OneToOneField("self", on_delete=models.SET_NULL, null=True)
     occupation_type = models.ForeignKey(OccupationType, on_delete=models.PROTECT)
     annual_income = models.PositiveIntegerField()
-    household = models.ForeignKey(Household, related_name="members", on_delete=models.SET_NULL, null=True)
+    household = models.ForeignKey(Household, related_name="members", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name

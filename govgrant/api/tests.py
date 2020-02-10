@@ -330,13 +330,11 @@ class HouseholdEndpointTestCase(APITestCase):
         # Assert API response
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-        # Assert that household no longer exists
+        # Assert that household and member no longer exists
         with self.assertRaises(Household.DoesNotExist):
             Household.objects.get(pk=household.pk)
-
-        # TODO: Amend models.py to allow deletes to cascade (if desired)
-        # with self.assertRaises(FamilyMember.DoesNotExist):
-        #     FamilyMember.objects.get(pk=member.pk)
+        with self.assertRaises(FamilyMember.DoesNotExist):
+            FamilyMember.objects.get(pk=member.pk)
 
     def test_if_http_delete_request_deletes_a_member_from_its_household(self):
         """Test if HTTP DELETE request deletes a member from its household"""
