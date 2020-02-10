@@ -66,7 +66,98 @@ python manage.py runserver
 # Usage
 
 This API primarily allows one to determine the eligible households of a specific grant.
+
 As part of the requirements, the following are the five of the fictitious grants and how its eligible households.
+To better illustrate their usage, the examples provided are based on the sample dataset `sample.json`.
+
+<details>
+<summary><b>View Full Sample Dataset</b></summary>
+
+```jsonc
+[
+    {
+        "id": 1,
+        "housing_type": "Landed",
+        "members": [
+            {
+                "id": 1,
+                "name": "Paul Tan",
+                "gender": "Male",
+                "marital_status": "Single",
+                "spouse": null,
+                "occupation_type": "Employed",
+                "annual_income": 10000,
+                "dob": "2010-01-01",
+                "household": 1
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "housing_type": "HDB",
+        "members": [
+            {
+                "id": 2,
+                "name": "John Doe",
+                "gender": "Male",
+                "marital_status": "Married",
+                "spouse": "Mary Doe",
+                "occupation_type": "Employed",
+                "annual_income": 88000,
+                "dob": "1980-01-01",
+                "household": 2
+            },
+            {
+                "id": 3,
+                "name": "Mary Doe",
+                "gender": "Female",
+                "marital_status": "Married",
+                "spouse": "John Doe",
+                "occupation_type": "Employed",
+                "annual_income": 88000,
+                "dob": "2010-01-01",
+                "household": 2
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "housing_type": "HDB",
+        "members": [
+            {
+                "id": 4,
+                "name": "Tan Ah Kow",
+                "gender": "Male",
+                "marital_status": "Single",
+                "spouse": null,
+                "occupation_type": "Employed",
+                "annual_income": 10000,
+                "dob": "1960-01-01",
+                "household": 3
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "housing_type": "HDB",
+        "members": [
+            {
+                "id": 5,
+                "name": "Linus Torvalds",
+                "gender": "Male",
+                "marital_status": "Single",
+                "spouse": null,
+                "occupation_type": "Employed",
+                "annual_income": 200000,
+                "dob": "2019-01-01",
+                "household": 4
+            }
+        ]
+    }
+]
+```
+
+</details>
 
 ## 1. Student Encouragement Bonus
 
