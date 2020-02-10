@@ -6,7 +6,7 @@ This project is done in fulfillment for the assessment requirements of GovTech's
 
 ## Getting Started
 
-### Installing with Docker
+### Installing with Docker (Recommended)
 
 If you do not already have Docker installed, you may refer to Docker's [installation instructions](https://docs.docker.com/install/) to get started.
 
