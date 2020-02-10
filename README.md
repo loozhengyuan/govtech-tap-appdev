@@ -83,7 +83,7 @@ curl '127.0.0.1:8000/households/?max_age=16&max_income=150000' \
     -H 'Accept: application/json; indent=4' \
     -X GET
 ```
-```json
+```jsonc
 [
     {
         "id": 1,
@@ -123,7 +123,7 @@ curl '127.0.0.1:8000/households/?with_spouse=true&max_age=18' \
     -H 'Accept: application/json; indent=4' \
     -X GET
 ```
-```json
+```jsonc
 [
     {
         "id": 2,
@@ -173,7 +173,7 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&min_age=50' \
     -H 'Accept: application/json; indent=4' \
     -X GET
 ```
-```json
+```jsonc
 [
     {
         "id": 3,
@@ -212,7 +212,7 @@ curl '127.0.0.1:8000/households/?max_age=5' \
     -H 'Accept: application/json; indent=4' \
     -X GET
 ```
-```json
+```jsonc
 [
     {
         "id": 4,
@@ -251,7 +251,7 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&max_income=100000' \
     -H 'Accept: application/json; indent=4' \
     -X GET
 ```
-```json
+```jsonc
 [
     {
         "id": 3,
@@ -288,7 +288,7 @@ curl 127.0.0.1:8000/households/ \
     -X POST \
     -d '{"housing_type":"Landed"}'
 ```
-```json
+```jsonc
 {
     "id": 1,
     "housing_type": "Landed",
@@ -309,7 +309,7 @@ curl 127.0.0.1:8000/households/1/add_member/ \
     -X POST \
     -d '{"name":"Paul Tan","gender":"Male","marital_status":"Single","spouse":null,"occupation_type":"Employed","annual_income":10000,"dob":"2010-01-01"}'
 ```
-```json
+```jsonc
 {
     "id": 1,
     "name": "Paul Tan",
@@ -334,7 +334,7 @@ curl 127.0.0.1:8000/households/ \
     -H 'Accept: application/json; indent=4' \
     -X GET
 ```
-```json
+```jsonc
 [
     {
         "id": 1,
@@ -367,7 +367,7 @@ curl 127.0.0.1:8000/households/1/ \
     -H 'Accept: application/json; indent=4' \
     -X GET
 ```
-```json
+```jsonc
 {
     "id": 1,
     "housing_type": "Landed",
