@@ -371,7 +371,7 @@ class HouseholdEndpointTestCase(APITestCase):
         # Execute API call
         response = self.client.delete(
             path=f"/households/{household.pk}/remove_member/",
-            data=data,
+            data={"name": data["name"]},  # Only 'name' key is needed
             format="json",
         )
 
