@@ -366,6 +366,7 @@ class HouseholdEndpointTestCase(APITestCase):
         )
 
         # Assert that household and member exists
+        household.refresh_from_db()  # Sync obj with db
         self.assertNotEqual(household, None)
         self.assertEqual(household.members.count(), 1)
 
@@ -380,6 +381,7 @@ class HouseholdEndpointTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
         # Assert that household exists but member does not
+        household.refresh_from_db()  # Sync obj with db
         self.assertNotEqual(household, None)
         self.assertEqual(household.members.count(), 0)
 
