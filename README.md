@@ -177,7 +177,7 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&min_age=50' \
 [
     {
         "id": 3,
-        "housing_type": "HDB",                  // housing_type=hdb
+        "housing_type": "HDB",                  # housing_type=hdb
         "members": [
             {
                 "id": 4,
@@ -187,7 +187,7 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&min_age=50' \
                 "spouse": null,
                 "occupation_type": "Employed",
                 "annual_income": 10000,
-                "dob": "1960-01-01",            // min_age=50
+                "dob": "1960-01-01",            # min_age=50
                 "household": 3
             }
         ]
@@ -255,7 +255,7 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&max_income=100000' \
 [
     {
         "id": 3,
-        "housing_type": "HDB",                  // housing_type=hdb
+        "housing_type": "HDB",                  # housing_type=hdb
         "members": [
             {
                 "id": 4,
@@ -264,7 +264,7 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&max_income=100000' \
                 "marital_status": "Single",
                 "spouse": null,
                 "occupation_type": "Employed",
-                "annual_income": 10000,         // max_income=100000
+                "annual_income": 10000,         # max_income=100000
                 "dob": "1960-01-01",
                 "household": 3
             }
