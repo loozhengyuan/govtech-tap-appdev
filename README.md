@@ -400,7 +400,7 @@ curl 127.0.0.1:8000/households/1/ \
     -X DELETE
 ```
 
-_NOTE: This endpoint has not API response: `HTTP 204 NO CONTENT`_
+_NOTE: This endpoint has no API response: `HTTP 204 NO CONTENT`_
 
 ### `DELETE /households/<id>/remove_member`
 
@@ -416,4 +416,4 @@ curl 127.0.0.1:8000/households/1/remove_member/ \
     -d '{"name":"Paul Tan","gender":"Male","marital_status":"Single","spouse":null,"occupation_type":"Employed","annual_income":10000,"dob":"2010-01-01"}'
 ```
 
-_NOTE: This endpoint has not API response: `HTTP 204 NO CONTENT`_
+_NOTE: This endpoint has no API response: `HTTP 204 NO CONTENT`_
