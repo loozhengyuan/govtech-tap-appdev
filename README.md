@@ -63,18 +63,16 @@ Finally, execute the following commands to start running your server:
 python manage.py runserver
 ```
 
-## Grants
+# Grants
 
-### Student Encouragement Bonus
+## Student Encouragement Bonus
 
 The conditions of the grant targets:
 - Households with children of less than 16 years old
 - Household income of less than $150,000
 
 In order to filter recipients, we can use the `max_age` and `max_income` query parameters.
-The API request will thus look like:
-
-##### `GET /households/?max_age=16&max_income=150000`
+The API request will thus look like: `GET /households/?max_age=16&max_income=150000`
 
 <details>
 <summary><b>See Example</b></summary>
@@ -108,16 +106,14 @@ curl '127.0.0.1:8000/households/?max_age=16&max_income=150000' \
 
 </details>
 
-### Family Togetherness Scheme
+## Family Togetherness Scheme
 
 The conditions of the grant targets:
 - Households with husband & wife
 - Has child(ren) younger than 18 years old
 
 In order to filter recipients, we can use the `with_spouse` and `max_age` query parameters.
-The API request will thus look like:
-
-##### `GET /households/?with_spouse=true&max_age=18`
+The API request will thus look like: `GET /households/?with_spouse=true&max_age=18`
 
 <details>
 <summary><b>See Example</b></summary>
@@ -162,15 +158,13 @@ curl '127.0.0.1:8000/households/?with_spouse=true&max_age=18' \
 
 </details>
 
-### Elder Bonus
+## Elder Bonus
 
 The conditions of the grant targets:
 - HDB household with family members above the age of 50
 
 In order to filter recipients, we can use the `housing_type` and `min_age` query parameters.
-The API request will thus look like:
-
-##### `GET /households/?housing_type=hdb&min_age=50`
+The API request will thus look like: `GET /households/?housing_type=hdb&min_age=50`
 
 <details>
 <summary><b>See Example</b></summary>
@@ -204,15 +198,13 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&min_age=50' \
 
 </details>
 
-### Baby Sunshine Grant
+## Baby Sunshine Grant
 
 The conditions of the grant targets:
 - Household with young children younger than 5
 
 In order to filter recipients, we can use the `max_age` query parameter.
-The API request will thus look like:
-
-##### `GET /households/?max_age=5`
+The API request will thus look like: `GET /households/?max_age=5`
 
 <details>
 <summary><b>See Example</b></summary>
@@ -246,15 +238,13 @@ curl '127.0.0.1:8000/households/?max_age=5' \
 
 </details>
 
-### YOLO GST Grant
+## YOLO GST Grant
 
 The conditions of the grant targets:
 - HDB households with annual income of less than $100,000
 
 In order to filter recipients, we can use the `housing_type` and `max_income` query parameters.
-The API request will thus look like:
-
-##### `GET /households/?housing_type=hdb&min_age=50`
+The API request will thus look like: `GET /households/?housing_type=hdb&max_income=100000`
 
 <details>
 <summary><b>See Example</b></summary>
