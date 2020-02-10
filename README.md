@@ -70,7 +70,7 @@ As part of the requirements, the following are the five of the fictitious grants
 
 ## Student Encouragement Bonus
 
-The conditions of the grant targets:
+The conditions of the grant qualifies:
 - Households with children of less than 16 years old
 - Household income of less than $150,000
 
@@ -111,7 +111,7 @@ curl '127.0.0.1:8000/households/?max_age=16&max_income=150000' \
 
 ## Family Togetherness Scheme
 
-The conditions of the grant targets:
+The conditions of the grant qualifies:
 - Households with husband & wife
 - Has child(ren) younger than 18 years old
 
@@ -163,7 +163,7 @@ curl '127.0.0.1:8000/households/?with_spouse=true&max_age=18' \
 
 ## Elder Bonus
 
-The conditions of the grant targets:
+The conditions of the grant qualifies:
 - HDB household with family members above the age of 50
 
 In order to filter recipients, we can use the `housing_type` and `min_age` query parameters.
@@ -203,7 +203,7 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&min_age=50' \
 
 ## Baby Sunshine Grant
 
-The conditions of the grant targets:
+The conditions of the grant qualifies:
 - Household with young children younger than 5
 
 In order to filter recipients, we can use the `max_age` query parameter.
@@ -243,7 +243,7 @@ curl '127.0.0.1:8000/households/?max_age=5' \
 
 ## YOLO GST Grant
 
-The conditions of the grant targets:
+The conditions of the grant qualifies:
 - HDB households with annual income of less than $100,000
 
 In order to filter recipients, we can use the `housing_type` and `max_income` query parameters.
