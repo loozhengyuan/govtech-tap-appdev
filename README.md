@@ -83,27 +83,6 @@ curl '127.0.0.1:8000/households/?max_age=16&max_income=150000' \
     -H 'Accept: application/json; indent=4' \
     -X GET
 ```
-```jsonc
-[
-    {
-        "id": 1,
-        "housing_type": "Landed",
-        "members": [
-            {
-                "id": 1,
-                "name": "Paul Tan",
-                "gender": "Male",
-                "marital_status": "Single",
-                "spouse": null,
-                "occupation_type": "Employed",
-                "annual_income": 10000,
-                "dob": "2010-01-01",
-                "household": 1
-            }
-        ]
-    }
-]
-```
 </details>
 
 ### Family Togetherness Scheme
