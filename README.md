@@ -20,8 +20,8 @@ Run the server by executing `docker run`:
 
 ```sh
 docker run -it \
-    -p 8000:8000
-    -e SECRET_KEY=<YOUR_SECRET_KEY_HERE>
+    -p 8000:8000 \
+    -e SECRET_KEY=<YOUR_SECRET_KEY_HERE> \
     loozhengyuan/govtech-tap-appdev
 ```
 
