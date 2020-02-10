@@ -95,8 +95,8 @@ curl '127.0.0.1:8000/households/?max_age=16&max_income=150000' \
                 "marital_status": "Single",
                 "spouse": null,
                 "occupation_type": "Employed",
-                "annual_income": 10000,
-                "dob": "2010-01-01",
+                "annual_income": 10000,         // max_income=150000
+                "dob": "2010-01-01",            // max_age=16
                 "household": 1
             }
         ]
@@ -134,7 +134,7 @@ curl '127.0.0.1:8000/households/?with_spouse=true&max_age=18' \
                 "name": "John Doe",
                 "gender": "Male",
                 "marital_status": "Married",
-                "spouse": "Mary Doe",
+                "spouse": "Mary Doe",           // with_spouse=true
                 "occupation_type": "Employed",
                 "annual_income": 88000,
                 "dob": "1980-01-01",
@@ -145,10 +145,10 @@ curl '127.0.0.1:8000/households/?with_spouse=true&max_age=18' \
                 "name": "Mary Doe",
                 "gender": "Female",
                 "marital_status": "Married",
-                "spouse": "John Doe",
+                "spouse": "John Doe",           // with_spouse=true
                 "occupation_type": "Employed",
                 "annual_income": 88000,
-                "dob": "2010-01-01",
+                "dob": "2010-01-01",            // max_age=18
                 "household": 2
             }
         ]
@@ -228,7 +228,7 @@ curl '127.0.0.1:8000/households/?max_age=5' \
                 "spouse": null,
                 "occupation_type": "Employed",
                 "annual_income": 200000,
-                "dob": "2019-01-01",
+                "dob": "2019-01-01",            // max_age=5
                 "household": 4
             }
         ]
