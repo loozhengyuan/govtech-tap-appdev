@@ -177,6 +177,45 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&min_age=50' \
 WIP
 ```
 
+### Baby Sunshine Grant
+
+The conditions of the grant targets:
+- Household with young children younger than 5
+
+In order to filter recipients, we can use the `max_age` query parameter.
+The API request will thus look like:
+
+##### `GET /households/?max_age=5`
+
+**Example**
+
+```sh
+curl '127.0.0.1:8000/households/?max_age=5' \
+    -H 'Accept: application/json; indent=4' \
+    -X GET
+```
+```json
+[
+    {
+        "id": 4,
+        "housing_type": "HDB",
+        "members": [
+            {
+                "id": 5,
+                "name": "Linus Torvalds",
+                "gender": "Male",
+                "marital_status": "Single",
+                "spouse": null,
+                "occupation_type": "Employed",
+                "annual_income": 200000,
+                "dob": "2019-01-01",
+                "household": 4
+            }
+        ]
+    }
+]
+```
+
 ## Endpoints
 
 ### `POST /households/`
