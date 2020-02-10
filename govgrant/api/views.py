@@ -84,6 +84,12 @@ class HouseholdViewSet(viewsets.ModelViewSet):
         if max_age:
             filters["members__dob__gt"] = datetime.date.today() - datetime.timedelta(days=int(max_age) * 365)
 
+        # Filters based on housing type
+        # NOTE: Uses case insensitive match
+        housing_type = self.request.query_params.get('housing_type')
+        if housing_type:
+            filters["housing_type__name__iexact"] = housing_type
+
         # TODO: Consider using a better logic that checks
         # if the spouse is related to one another within
         # the same household.

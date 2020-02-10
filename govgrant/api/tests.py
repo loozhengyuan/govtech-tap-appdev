@@ -492,12 +492,13 @@ class GrantEligibilityTestCase(APITestCase):
 
         # Create query params
         params = {
+            "housing_type": "hdb",  # Case insensitive
             "min_age": 50,
         }
         expected = [
             {
                 "id": 3,
-                "housing_type": "Condominium",
+                "housing_type": "HDB",
                 "members": [
                     {
                         "id": 4,
@@ -568,29 +569,13 @@ class GrantEligibilityTestCase(APITestCase):
 
         # Create query params
         params = {
+            "housing_type": "hdb",  # Case insensitive
             "max_income": 100000,
         }
         expected = [
             {
-                "id": 1,
-                "housing_type": "Landed",
-                "members": [
-                    {
-                        "id": 1,
-                        "name": "Paul Tan",
-                        "gender": "Male",
-                        "marital_status": "Single",
-                        "spouse": None,
-                        "occupation_type": "Employed",
-                        "annual_income": 10000,
-                        "dob": "2010-01-01",
-                        "household": 1,
-                    },
-                ],
-            },
-            {
                 "id": 3,
-                "housing_type": "Condominium",
+                "housing_type": "HDB",
                 "members": [
                     {
                         "id": 4,
