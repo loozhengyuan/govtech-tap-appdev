@@ -86,6 +86,33 @@ curl 127.0.0.1:8000/households/ \
 }
 ```
 
+### `POST /households/<id>/add_member/`
+
+This endpoint appends FamilyMember instance to a specific Household instance.
+
+**Example**
+
+```sh
+curl 127.0.0.1:8000/households/1/add_member/ \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json; indent=4' \
+    -X POST \
+    -d '{"name":"Paul Tan","gender":"Male","marital_status":"Single","spouse":null,"occupation_type":"Employed","annual_income":10000,"dob":"2010-01-01"}'
+```
+```json
+{
+    "id": 1,
+    "name": "Paul Tan",
+    "gender": "Male",
+    "marital_status": "Single",
+    "spouse": null,
+    "occupation_type": "Employed",
+    "annual_income": 10000,
+    "dob": "2010-01-01",
+    "household": 1
+}
+```
+
 ### `GET /households/`
 
 This endpoint lists all households and its associated members.
