@@ -4,9 +4,9 @@
 
 This project is done in fulfillment for the assessment requirements of GovTech's Technology Associate Program.
 
-# Getting Started
+## Getting Started
 
-## Installing with Docker
+### Installing with Docker
 
 If you do not already have Docker installed, you may refer to Docker's [installation instructions](https://docs.docker.com/install/) to get started.
 
@@ -27,7 +27,7 @@ docker run -it \
 
 _NOTE: Make sure you generate a secret key and substitute `<YOUR_SECRET_KEY_HERE>` in the above._
 
-## Installing from source
+### Installing from source
 
 If you do not already have Git installed, you may refer to Github's [guide](https://help.github.com/en/github/getting-started-with-github/set-up-git).
 
@@ -63,9 +63,9 @@ Finally, execute the following commands to start running your server:
 python manage.py runserver
 ```
 
-# Endpoints
+## Endpoints
 
-## `GET /households/`
+### `GET /households/`
 
 This endpoint lists all households and its associated members.
 
