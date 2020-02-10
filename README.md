@@ -402,6 +402,8 @@ curl 127.0.0.1:8000/households/ \
 
 This endpoint appends FamilyMember instance to a specific Household instance.
 
+**Note:** Currently, spousal relations can only be set on the second spouse. To illustrate, if Paul (in the example below) were to put Alice as his spouse, it will not work because Alice does not exist in the database. However, if Paul was created and Alice adds Paul as her spouse, both spouses will have their `member.spouse` field updated to reflect each other.
+
 <details>
 <summary><b>See Example</b></summary>
 
