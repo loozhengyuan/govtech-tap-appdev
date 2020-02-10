@@ -54,17 +54,14 @@ export SECRET_KEY=secret
 
 _NOTE: Make sure you generate a secret key and substitute the `secret` placeholder above._
 
-Create database and run database migrations:
+Create database, run migrations, and initial data fixtures:
 
 ```sh
 python manage.py migrate
-```
-
-With the database set up, we probably still need some initial data so we can get started right away. You can load these data fixtures from `initial.json` and `sample.json`.
-
-```sh
 python manage.py loaddata initial.json sample.json
 ```
+
+_NOTE: If you intend to play around with the endpoints and think that you will like to setup your `Household` and `FamilyMember`, you can omit the `sample.json` file when running the above. In any case, if you ever want to start afresh, you may run `rm db.sqlite3` and run the above to snippet to get your data back in shape._
 
 Finally, execute the following commands to start running your server:
 
