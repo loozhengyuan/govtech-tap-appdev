@@ -148,7 +148,7 @@ curl 127.0.0.1:8000/households/ \
 
 ### `GET /households/<id>/`
 
-This endpoint lists the details of a household and its related members.
+This endpoint shows the details of a household and its related members.
 
 **Example**
 
