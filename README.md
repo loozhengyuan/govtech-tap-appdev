@@ -84,7 +84,6 @@ curl '127.0.0.1:8000/households/?max_age=16&max_income=150000' \
     -H 'Accept: application/json; indent=4' \
     -X GET
 ```
-
 ```jsonc
 [
     {
@@ -120,7 +119,8 @@ The API request will thus look like:
 
 ##### `GET /households/?with_spouse=true&max_age=18`
 
-**Example**
+<details>
+<summary><b>See Example</b></summary>
 
 ```sh
 curl '127.0.0.1:8000/households/?with_spouse=true&max_age=18' \
@@ -160,6 +160,8 @@ curl '127.0.0.1:8000/households/?with_spouse=true&max_age=18' \
 ]
 ```
 
+</details>
+
 ### Elder Bonus
 
 The conditions of the grant targets:
@@ -170,7 +172,8 @@ The API request will thus look like:
 
 ##### `GET /households/?housing_type=hdb&min_age=50`
 
-**Example**
+<details>
+<summary><b>See Example</b></summary>
 
 ```sh
 curl '127.0.0.1:8000/households/?housing_type=hdb&min_age=50' \
@@ -199,6 +202,8 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&min_age=50' \
 ]
 ```
 
+</details>
+
 ### Baby Sunshine Grant
 
 The conditions of the grant targets:
@@ -209,7 +214,8 @@ The API request will thus look like:
 
 ##### `GET /households/?max_age=5`
 
-**Example**
+<details>
+<summary><b>See Example</b></summary>
 
 ```sh
 curl '127.0.0.1:8000/households/?max_age=5' \
@@ -238,6 +244,8 @@ curl '127.0.0.1:8000/households/?max_age=5' \
 ]
 ```
 
+</details>
+
 ### YOLO GST Grant
 
 The conditions of the grant targets:
@@ -248,7 +256,8 @@ The API request will thus look like:
 
 ##### `GET /households/?housing_type=hdb&min_age=50`
 
-**Example**
+<details>
+<summary><b>See Example</b></summary>
 
 ```sh
 curl '127.0.0.1:8000/households/?housing_type=hdb&max_income=100000' \
@@ -276,6 +285,8 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&max_income=100000' \
     }
 ]
 ```
+
+</details>
 
 ## Endpoints
 
