@@ -212,39 +212,29 @@ class HouseholdEndpointTestCase(APITestCase):
 
         # Create data payload
         data = {
-            "members": [
-                {
-                    "name": "Tan Ah Kow",
-                    "gender": "Male",
-                    "marital_status": "Single",
-                    "spouse": None,
-                    "occupation_type": "Employed",
-                    "annual_income": 48000,
-                    "dob": "2019-10-01",
-                },
-            ]
+            "name": "Tan Ah Kow",
+            "gender": "Male",
+            "marital_status": "Single",
+            "spouse": None,
+            "occupation_type": "Employed",
+            "annual_income": 48000,
+            "dob": "2019-10-01",
         }
         expected = {
-            "id": 1,                                # Added in response
-            "housing_type": "Landed",               # Added in response
-            "members": [
-                {
-                    "id": 1,                        # Added in response
-                    "name": "Tan Ah Kow",
-                    "gender": "Male",
-                    "marital_status": "Single",
-                    "spouse": None,
-                    "occupation_type": "Employed",
-                    "annual_income": 48000,
-                    "dob": "2019-10-01",
-                    "household": 1,                 # Added in response
-                },
-            ]
+            "id": 1,                        # Added in response
+            "name": "Tan Ah Kow",
+            "gender": "Male",
+            "marital_status": "Single",
+            "spouse": None,
+            "occupation_type": "Employed",
+            "annual_income": 48000,
+            "dob": "2019-10-01",
+            "household": 1,                 # Added in response
         }
 
         # Execute API call
-        response = self.client.patch(
-            path="/households/1/",
+        response = self.client.post(
+            path="/households/1/add_member/",
             data=data,
             format="json",
         )

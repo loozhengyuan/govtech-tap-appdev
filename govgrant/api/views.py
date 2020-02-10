@@ -1,16 +1,37 @@
 import datetime
 
 from django.db.models import Count, Sum, Case, When
-from rest_framework import viewsets
+from rest_framework import status, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from govgrant.api.models import Household
-from govgrant.api.serializers import HouseholdSerializer
+from govgrant.api.serializers import HouseholdSerializer, FamilyMemberSerializer
 
 
 class HouseholdViewSet(viewsets.ModelViewSet):
     """API endpoint for Household resource"""
     queryset = Household.objects.all()
     serializer_class = HouseholdSerializer
+
+    @action(detail=True, methods=['post'])
+    def add_member(self, request, pk=None):
+        """Custom action for adding member to household"""
+
+        # Patch household.pk to current member object
+        household = self.get_object()
+        request.data["household"] = household.pk
+
+        # Validate request
+        serializer = FamilyMemberSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # Commit changes to return
+        # TODO: Return household or just member instance?
+        # TODO: Consider using status.HTTP_201_CREATED?
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def get_queryset(self):
         """
