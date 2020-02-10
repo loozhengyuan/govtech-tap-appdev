@@ -35,13 +35,3 @@ class HouseholdSerializer(serializers.ModelSerializer):
             "housing_type",
             "members",
         )
-
-    def create(self, validated_data):
-        return Household.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        members = validated_data.pop('members')
-        for member in members:
-            member["household"] = instance
-            FamilyMember.objects.update_or_create(**member)
-        return instance
