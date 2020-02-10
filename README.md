@@ -30,6 +30,7 @@ _NOTE: Make sure you generate a secret key and substitute the `secret` placehold
 ### Installing from source
 
 If you do not already have Git installed, you may refer to Github's [guide](https://help.github.com/en/github/getting-started-with-github/set-up-git).
+The following steps also assume you have Python `>=3.6` installed.
 
 Firstly, pull the contents of the repository into your environment:
 
