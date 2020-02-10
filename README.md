@@ -63,7 +63,7 @@ Finally, execute the following commands to start running your server:
 python manage.py runserver
 ```
 
-# Usage
+## Usage
 
 This API primarily allows one to determine the eligible households of a specific grant.
 
@@ -159,7 +159,7 @@ To better illustrate their usage, the examples provided are based on the sample 
 
 </details>
 
-## 1. Student Encouragement Bonus
+### 1. Student Encouragement Bonus
 
 The conditions of the grant qualifies:
 - Households with children of less than 16 years old
@@ -200,7 +200,7 @@ curl '127.0.0.1:8000/households/?max_age=16&max_income=150000' \
 
 </details>
 
-## 2. Family Togetherness Scheme
+### 2. Family Togetherness Scheme
 
 The conditions of the grant qualifies:
 - Households with husband & wife
@@ -252,7 +252,7 @@ curl '127.0.0.1:8000/households/?with_spouse=true&max_age=18' \
 
 </details>
 
-## 3. Elder Bonus
+### 3. Elder Bonus
 
 The conditions of the grant qualifies:
 - HDB household with family members above the age of 50
@@ -292,7 +292,7 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&min_age=50' \
 
 </details>
 
-## 4. Baby Sunshine Grant
+### 4. Baby Sunshine Grant
 
 The conditions of the grant qualifies:
 - Household with young children younger than 5
@@ -332,7 +332,7 @@ curl '127.0.0.1:8000/households/?max_age=5' \
 
 </details>
 
-## 5. YOLO GST Grant
+### 5. YOLO GST Grant
 
 The conditions of the grant qualifies:
 - HDB households with annual income of less than $100,000
@@ -372,7 +372,7 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&max_income=100000' \
 
 </details>
 
-# Endpoints
+## Endpoints
 
 ### `POST /households/`
 
