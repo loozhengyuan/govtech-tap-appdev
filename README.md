@@ -105,6 +105,57 @@ curl '127.0.0.1:8000/households/?max_age=16&max_income=150000' \
 ]
 ```
 
+### Family Togetherness Scheme
+
+The conditions of the grant targets:
+- Households with husband & wife
+- Has child(ren) younger than 18 years old
+
+In order to filter recipients, we can use the `with_spouse` and `max_age` query parameters.
+The API request will thus look like:
+
+##### `GET /households/?with_spouse=true&max_age=18`
+
+**Example**
+
+```sh
+curl '127.0.0.1:8000/households/?with_spouse=true&max_age=18' \
+    -H 'Accept: application/json; indent=4' \
+    -X GET
+```
+```json
+[
+    {
+        "id": 2,
+        "housing_type": "HDB",
+        "members": [
+            {
+                "id": 2,
+                "name": "John Doe",
+                "gender": "Male",
+                "marital_status": "Married",
+                "spouse": "Mary Doe",
+                "occupation_type": "Employed",
+                "annual_income": 88000,
+                "dob": "1980-01-01",
+                "household": 2
+            },
+            {
+                "id": 3,
+                "name": "Mary Doe",
+                "gender": "Female",
+                "marital_status": "Married",
+                "spouse": "John Doe",
+                "occupation_type": "Employed",
+                "annual_income": 88000,
+                "dob": "2010-01-01",
+                "household": 2
+            }
+        ]
+    }
+]
+```
+
 ## Endpoints
 
 ### `POST /households/`
