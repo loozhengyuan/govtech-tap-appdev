@@ -534,3 +534,23 @@ curl 127.0.0.1:8000/households/1/remove_member/ \
 _NOTE: This endpoint has no API response: `HTTP 204 NO CONTENT`_
 
 </details>
+
+# Notes
+
+This section highlights about the design assumptions, motivations, limitations, etc.
+
+**Monogamy marriages only**
+
+To make things easy, let us pretend that you can only be married to one person at any one point in time.
+
+**Spouse field available in all endpoints**
+
+In the task requirements, it is noted that the `spouse` field is left out for the `GET /households/<id>` endpoint.
+This seems to be a deviation from all other endpoints and it does not seem to have a good justification why this was the case,
+thus it shall be assumed that the `spouse` field was intended to be included in all endpoints.
+
+**Family names are unique**
+
+Obviously, this is not a practical assumption but this will make it much easier to interact with the API without dealing with all the primary keys.
+By making this assertion, all `FamilyMember` instances can be referred to by their names because they are unique, e.g. Bob can add "Alice" as it spouse
+without knowing her primary key. Unfortunately though, you will not be able to create a user with the same name.
