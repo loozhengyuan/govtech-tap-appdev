@@ -6,7 +6,7 @@ This project is done in fulfillment for the assessment requirements of GovTech's
 
 ## Getting Started
 
-### Installing with Docker (Recommended)
+### Method 1: Installing with Docker (Recommended)
 
 If you do not already have Docker installed, you may refer to Docker's [installation instructions](https://docs.docker.com/install/) to get started.
 
@@ -27,7 +27,7 @@ docker run -it \
 
 _NOTE: Make sure you generate a secret key and substitute the `secret` placeholder above._
 
-### Installing from source
+### Method 2: Installing from source
 
 If you do not already have Git installed, you may refer to Github's [guide](https://help.github.com/en/github/getting-started-with-github/set-up-git).
 The following steps also assume you have Python `>=3.6` installed.
