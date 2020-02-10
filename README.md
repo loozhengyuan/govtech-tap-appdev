@@ -216,6 +216,27 @@ curl '127.0.0.1:8000/households/?max_age=5' \
 ]
 ```
 
+### YOLO GST Grant
+
+The conditions of the grant targets:
+- HDB households with annual income of less than $100,000
+
+In order to filter recipients, we can use the `housing_type` and `max_income` query parameters.
+The API request will thus look like:
+
+##### `GET /households/?housing_type=hdb&min_age=50`
+
+**Example**
+
+```sh
+curl '127.0.0.1:8000/households/?housing_type=hdb&max_income=100000' \
+    -H 'Accept: application/json; indent=4' \
+    -X GET
+```
+```json
+WIP
+```
+
 ## Endpoints
 
 ### `POST /households/`
