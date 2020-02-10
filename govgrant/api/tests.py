@@ -340,7 +340,48 @@ class HouseholdEndpointTestCase(APITestCase):
 
     def test_if_http_delete_request_deletes_a_member_from_its_household(self):
         """Test if HTTP DELETE request deletes a member from its household"""
-        pass
+
+        # Create a single Household object first
+        housing_type = HousingType.objects.get(name="Landed")
+        household = Household.objects.create(
+            housing_type=housing_type,
+        )
+
+        # Create data payload
+        data = {
+            "name": "Tan Ah Kow",
+            "gender": "Male",
+            "marital_status": "Single",
+            "spouse": None,
+            "occupation_type": "Employed",
+            "annual_income": 48000,
+            "dob": "2019-10-01",
+        }
+
+        # Add member
+        response = self.client.post(
+            path=f"/households/{household.pk}/add_member/",
+            data=data,
+            format="json",
+        )
+
+        # Assert that household and member exists
+        self.assertNotEqual(household, None)
+        self.assertEqual(household.members.count(), 1)
+
+        # Execute API call
+        response = self.client.delete(
+            path=f"/households/{household.pk}/remove_member/",
+            data=data,
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+        # Assert that household exists but member does not
+        self.assertNotEqual(household, None)
+        self.assertEqual(household.members.count(), 0)
 
 
 class GrantEligibilityTestCase(APITestCase):
