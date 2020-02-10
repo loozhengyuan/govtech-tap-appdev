@@ -63,7 +63,10 @@ Finally, execute the following commands to start running your server:
 python manage.py runserver
 ```
 
-# Grants
+# Usage
+
+This API primarily allows one to determine the eligible households of a specific grant.
+As part of the requirements, the following are the five of the fictitious grants and how its eligible households.
 
 ## Student Encouragement Bonus
 
