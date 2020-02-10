@@ -378,7 +378,8 @@ curl '127.0.0.1:8000/households/?housing_type=hdb&max_income=100000' \
 
 This endpoint creates an instance of the Household resource.
 
-**Example**
+<details>
+<summary><b>See Example</b></summary>
 
 ```sh
 curl 127.0.0.1:8000/households/ \
@@ -395,11 +396,14 @@ curl 127.0.0.1:8000/households/ \
 }
 ```
 
+</details>
+
 ## `POST /households/<id>/add_member/`
 
 This endpoint appends FamilyMember instance to a specific Household instance.
 
-**Example**
+<details>
+<summary><b>See Example</b></summary>
 
 ```sh
 curl 127.0.0.1:8000/households/1/add_member/ \
@@ -422,11 +426,14 @@ curl 127.0.0.1:8000/households/1/add_member/ \
 }
 ```
 
+</details>
+
 ## `GET /households/`
 
 This endpoint lists all households and its associated members.
 
-**Example**
+<details>
+<summary><b>See Example</b></summary>
 
 ```sh
 curl 127.0.0.1:8000/households/ \
@@ -455,11 +462,14 @@ curl 127.0.0.1:8000/households/ \
 ]
 ```
 
+</details>
+
 ## `GET /households/<id>/`
 
 This endpoint shows the details of a household and its related members.
 
-**Example**
+<details>
+<summary><b>See Example</b></summary>
 
 ```sh
 curl 127.0.0.1:8000/households/1/ \
@@ -486,11 +496,14 @@ curl 127.0.0.1:8000/households/1/ \
 }
 ```
 
+</details>
+
 ## `DELETE /households/<id>/`
 
 This endpoint deletes a household and its related members.
 
-**Example**
+<details>
+<summary><b>See Example</b></summary>
 
 ```sh
 curl 127.0.0.1:8000/households/1/ \
@@ -501,11 +514,14 @@ curl 127.0.0.1:8000/households/1/ \
 
 _NOTE: This endpoint has no API response: `HTTP 204 NO CONTENT`_
 
+</details>
+
 ## `DELETE /households/<id>/remove_member`
 
 This endpoint deletes a member from its associated household.
 
-**Example**
+<details>
+<summary><b>See Example</b></summary>
 
 ```sh
 curl 127.0.0.1:8000/households/1/remove_member/ \
@@ -516,3 +532,5 @@ curl 127.0.0.1:8000/households/1/remove_member/ \
 ```
 
 _NOTE: This endpoint has no API response: `HTTP 204 NO CONTENT`_
+
+</details>
