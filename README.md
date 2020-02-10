@@ -77,7 +77,7 @@ The API request will thus look like:
 ##### `GET /households/?max_age=16&max_income=150000`
 
 <details>
-<summary>Example</summary>
+<summary><b>Example<b></summary>
 <p>
 
 ```sh
