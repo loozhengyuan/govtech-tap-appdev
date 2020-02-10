@@ -65,6 +65,27 @@ python manage.py runserver
 
 ## Endpoints
 
+### `POST /households/`
+
+This endpoint creates an instance of the Household resource.
+
+**Example**
+
+```sh
+curl 127.0.0.1:8000/households/ \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json; indent=4' \
+    -X POST \
+    -d '{"housing_type":"Landed"}'
+```
+```json
+{
+    "id": 1,
+    "housing_type": "Landed",
+    "members": []
+}
+```
+
 ### `GET /households/`
 
 This endpoint lists all households and its associated members.
