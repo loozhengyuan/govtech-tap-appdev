@@ -49,12 +49,21 @@ class HouseholdViewSet(viewsets.ModelViewSet):
         # This is only done because the Serializer cannot successfully
         # validate this request object and because the pk of the member
         # cannot be derived from the url route.
-        # TODO: Catch FamilyMember.DoesNotExist exception
-        member = FamilyMember.objects.get(name=name)
-        member.delete()
-
-        # Get household and return response
         household = self.get_object()
+        try:
+            member = FamilyMember.objects.get(
+                name=name,
+                household=household,  # Only if member in current household
+            )
+            member.delete()
+        except FamilyMember.DoesNotExist:
+            data = {
+                "name": f"could not find '{name}' in current household"
+            }
+            return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
+
+        # Refresh household instance
+        household.refresh_from_db()
         serializer = HouseholdSerializer(household)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
