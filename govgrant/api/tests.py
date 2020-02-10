@@ -294,6 +294,97 @@ class HouseholdEndpointTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(json.loads(response.content), expected)
 
+    def test_if_http_delete_request_deletes_a_household_and_its_related_members(self):
+        """Test if HTTP DELETE request deletes a household and its related members"""
+
+        # Create a single Household object and associated FamilyMember objects
+        housing_type = HousingType.objects.get(name="Landed")
+        household = Household.objects.create(
+            housing_type=housing_type,
+        )
+        gender = Gender.objects.get(name="Male")
+        marital_status = MaritalStatus.objects.get(name="Single")
+        occupation_type = OccupationType.objects.get(name="Employed")
+        member = FamilyMember.objects.create(
+            name="Tan Ah Kow",
+            dob="2019-10-01",
+            gender=gender,
+            marital_status=marital_status,
+            spouse=None,
+            occupation_type=occupation_type,
+            annual_income=48000,
+            household=household,
+        )
+
+        # Assert that household and member exists
+        self.assertNotEqual(household, None)
+        self.assertNotEqual(member, None)
+        self.assertEqual(household.members.count(), 1)
+
+        # Execute API call
+        response = self.client.delete(
+            path=f"/households/{household.pk}/",
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+        # Assert that household no longer exists
+        with self.assertRaises(Household.DoesNotExist):
+            Household.objects.get(pk=household.pk)
+
+        # TODO: Amend models.py to allow deletes to cascade (if desired)
+        # with self.assertRaises(FamilyMember.DoesNotExist):
+        #     FamilyMember.objects.get(pk=member.pk)
+
+    def test_if_http_delete_request_deletes_a_member_from_its_household(self):
+        """Test if HTTP DELETE request deletes a member from its household"""
+
+        # Create a single Household object first
+        housing_type = HousingType.objects.get(name="Landed")
+        household = Household.objects.create(
+            housing_type=housing_type,
+        )
+
+        # Create data payload
+        data = {
+            "name": "Tan Ah Kow",
+            "gender": "Male",
+            "marital_status": "Single",
+            "spouse": None,
+            "occupation_type": "Employed",
+            "annual_income": 48000,
+            "dob": "2019-10-01",
+        }
+
+        # Add member
+        response = self.client.post(
+            path=f"/households/{household.pk}/add_member/",
+            data=data,
+            format="json",
+        )
+
+        # Assert that household and member exists
+        household.refresh_from_db()  # Sync obj with db
+        self.assertNotEqual(household, None)
+        self.assertEqual(household.members.count(), 1)
+
+        # Execute API call
+        response = self.client.delete(
+            path=f"/households/{household.pk}/remove_member/",
+            data=data,
+            format="json",
+        )
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+        # Assert that household exists but member does not
+        household.refresh_from_db()  # Sync obj with db
+        self.assertNotEqual(household, None)
+        self.assertEqual(household.members.count(), 0)
+
 
 class GrantEligibilityTestCase(APITestCase):
     """TestCases for filtering Household resource using query parameters"""

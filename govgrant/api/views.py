@@ -5,7 +5,7 @@ from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from govgrant.api.models import Household
+from govgrant.api.models import Household, FamilyMember
 from govgrant.api.serializers import HouseholdSerializer, FamilyMemberSerializer
 
 
@@ -32,6 +32,28 @@ class HouseholdViewSet(viewsets.ModelViewSet):
         # TODO: Consider using status.HTTP_201_CREATED?
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @action(detail=True, methods=['delete'])
+    def remove_member(self, request, pk=None):
+        """Custom action for removing member from household"""
+
+        # Get required key in request.data
+        name = request.data.get("name")
+        if not name:
+            data = {
+                "name": "field is required"
+            }
+            return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
+
+        # Delete object and return Response
+        # TODO: Consider a better way to destroy model instance.
+        # This is only done because the Serializer cannot successfully
+        # validate this request object and because the pk of the member
+        # cannot be derived from the url route.
+        # TODO: Catch FamilyMember.DoesNotExist exception
+        member = FamilyMember.objects.get(name=name)
+        member.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     def get_queryset(self):
         """
