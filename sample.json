@@ -17,7 +17,7 @@
         "model": "api.household",
         "pk": 3,
         "fields": {
-            "housing_type": 2
+            "housing_type": 1
         }
     },
     {

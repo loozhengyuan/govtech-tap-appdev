@@ -497,7 +497,7 @@ class GrantEligibilityTestCase(APITestCase):
         expected = [
             {
                 "id": 3,
-                "housing_type": "Condominium",
+                "housing_type": "HDB",
                 "members": [
                     {
                         "id": 4,
@@ -590,7 +590,7 @@ class GrantEligibilityTestCase(APITestCase):
             },
             {
                 "id": 3,
-                "housing_type": "Condominium",
+                "housing_type": "HDB",
                 "members": [
                     {
                         "id": 4,
