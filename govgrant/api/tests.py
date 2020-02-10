@@ -240,7 +240,7 @@ class HouseholdEndpointTestCase(APITestCase):
         )
 
         # Assert API response
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(json.loads(response.content), expected)
 
     def test_if_http_get_request_lists_all_members_of_a_household(self):

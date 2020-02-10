@@ -29,9 +29,8 @@ class HouseholdViewSet(viewsets.ModelViewSet):
 
         # Commit changes to return
         # TODO: Return household or just member instance?
-        # TODO: Consider using status.HTTP_201_CREATED?
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @action(detail=True, methods=['delete'])
     def remove_member(self, request, pk=None):
