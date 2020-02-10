@@ -45,6 +45,14 @@ pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
 ```
 
+Before we run any part of the app, we need to export the `SECRET_KEY` environment variable.
+
+```sh
+export SECRET_KEY=secret
+```
+
+_NOTE: Make sure you generate a secret key and substitute the `secret` placeholder above._
+
 Create database and run database migrations:
 
 ```sh
