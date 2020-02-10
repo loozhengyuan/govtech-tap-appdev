@@ -375,8 +375,16 @@ class HouseholdEndpointTestCase(APITestCase):
             format="json",
         )
 
+        # Create expected data payload
+        expected = {
+            "id": 1,
+            "housing_type": "Landed",
+            "members": []
+        }
+
         # Assert API response
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(json.loads(response.content), expected)
 
         # Assert that household exists but member does not
         household.refresh_from_db()  # Sync obj with db

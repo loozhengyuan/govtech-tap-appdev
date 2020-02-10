@@ -44,7 +44,7 @@ class HouseholdViewSet(viewsets.ModelViewSet):
             }
             return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
 
-        # Delete object and return Response
+        # Delete object
         # TODO: Consider a better way to destroy model instance.
         # This is only done because the Serializer cannot successfully
         # validate this request object and because the pk of the member
@@ -52,7 +52,11 @@ class HouseholdViewSet(viewsets.ModelViewSet):
         # TODO: Catch FamilyMember.DoesNotExist exception
         member = FamilyMember.objects.get(name=name)
         member.delete()
-        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+        # Get household and return response
+        household = self.get_object()
+        serializer = HouseholdSerializer(household)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def get_queryset(self):
         """
