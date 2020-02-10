@@ -176,3 +176,18 @@ curl 127.0.0.1:8000/households/1/ \
     ]
 }
 ```
+
+### `DELETE /households/<id>/`
+
+This endpoint deletes a household and its related members.
+
+**Example**
+
+```sh
+curl 127.0.0.1:8000/households/1/ \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json; indent=4' \
+    -X DELETE
+```
+
+_NOTE: This endpoint has not API response: `HTTP 204 NO CONTENT`_
