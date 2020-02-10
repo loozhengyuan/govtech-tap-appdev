@@ -97,3 +97,34 @@ curl 127.0.0.1:8000/households/ \
     }
 ]
 ```
+
+### `GET /households/<id>/`
+
+This endpoint lists the details of a household and its related members.
+
+**Example**
+
+```sh
+curl 127.0.0.1:8000/households/1/ \
+    -H 'Accept: application/json; indent=4' \
+    -X GET
+```
+```json
+{
+    "id": 1,
+    "housing_type": "Landed",
+    "members": [
+        {
+            "id": 1,
+            "name": "Paul Tan",
+            "gender": "Male",
+            "marital_status": "Single",
+            "spouse": null,
+            "occupation_type": "Employed",
+            "annual_income": 10000,
+            "dob": "2010-01-01",
+            "household": 1
+        }
+    ]
+}
+```
