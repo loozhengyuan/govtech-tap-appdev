@@ -78,6 +78,7 @@ The API request will thus look like:
 
 <details>
 <summary><b>Example</b></summary>
+
 ```sh
 curl '127.0.0.1:8000/households/?max_age=16&max_income=150000' \
     -H 'Accept: application/json; indent=4' \
@@ -105,6 +106,7 @@ curl '127.0.0.1:8000/households/?max_age=16&max_income=150000' \
     }
 ]
 ```
+
 </details>
 
 ### Family Togetherness Scheme
