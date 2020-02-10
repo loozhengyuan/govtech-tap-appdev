@@ -528,6 +528,8 @@ _NOTE: This endpoint has no API response: `HTTP 204 NO CONTENT`_
 
 This endpoint deletes a member from its associated household.
 
+**Note:** Only the `name` key will be sufficient because a member's name is unique.
+
 <details>
 <summary><b>See Example</b></summary>
 
