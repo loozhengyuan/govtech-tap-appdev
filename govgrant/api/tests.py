@@ -198,8 +198,8 @@ class HouseholdEndpointTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(json.loads(response.content), expected)
 
-    def test_if_http_patch_request_adds_family_member_to_a_household(self):
-        """Test if HTTP PATCH request adds family member to a household"""
+    def test_if_http_post_request_adds_family_member_to_a_household(self):
+        """Test if HTTP POST request adds family member to a household"""
 
         # Create a single Household object first
         housing_type = HousingType.objects.get(name="Landed")
