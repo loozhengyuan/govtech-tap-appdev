@@ -537,7 +537,7 @@ _NOTE: This endpoint has no API response: `HTTP 204 NO CONTENT`_
 
 </details>
 
-# Notes
+## Notes
 
 This section highlights about the design assumptions, motivations, limitations, etc.
 
