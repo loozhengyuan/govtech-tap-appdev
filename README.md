@@ -63,6 +63,48 @@ Finally, execute the following commands to start running your server:
 python manage.py runserver
 ```
 
+## Grants
+
+### Student Encouragement Bonus
+
+The conditions of the grant targets:
+- Households with children of less than 16 years old
+- Household income of less than $150,000
+
+In order to filter recipients, we can use the `max_age` and `max_income` query parameters.
+The API request will thus look like:
+
+##### `GET /households/?max_age=16&max_income=150000`
+
+**Example**
+
+```sh
+curl '127.0.0.1:8000/households/?max_age=16&max_income=150000' \
+    -H 'Accept: application/json; indent=4' \
+    -X GET
+```
+```json
+[
+    {
+        "id": 1,
+        "housing_type": "Landed",
+        "members": [
+            {
+                "id": 1,
+                "name": "Paul Tan",
+                "gender": "Male",
+                "marital_status": "Single",
+                "spouse": null,
+                "occupation_type": "Employed",
+                "annual_income": 10000,
+                "dob": "2010-01-01",
+                "household": 1
+            }
+        ]
+    }
+]
+```
+
 ## Endpoints
 
 ### `POST /households/`
