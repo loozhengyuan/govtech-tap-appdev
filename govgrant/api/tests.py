@@ -391,6 +391,61 @@ class HouseholdEndpointTestCase(APITestCase):
         self.assertNotEqual(household, None)
         self.assertEqual(household.members.count(), 0)
 
+    def test_if_http_delete_request_fails_without_name_key(self):
+        """Test if HTTP DELETE request fails without name key"""
+
+        # Create a single Household object first
+        housing_type = HousingType.objects.get(name="Landed")
+        household = Household.objects.create(
+            housing_type=housing_type,
+        )
+
+        # Execute API call
+        response = self.client.delete(
+            path=f"/households/{household.pk}/remove_member/",
+            data={},  # 'name' key missing in api request
+            format="json",
+        )
+
+        # Create expected data payload
+        expected = {
+            "name": "field is required"
+        }
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(json.loads(response.content), expected)
+
+    def test_if_http_delete_request_fails_if_member_not_found_in_household(self):
+        """Test if HTTP DELETE request fails if member not found in household"""
+
+        # Create a single Household object first
+        housing_type = HousingType.objects.get(name="Landed")
+        household = Household.objects.create(
+            housing_type=housing_type,
+        )
+
+        # Assert that household exists but member does not
+        self.assertNotEqual(household, None)
+        self.assertEqual(household.members.count(), 0)
+
+        # Execute API call
+        name = "David Copperfield"
+        response = self.client.delete(
+            path=f"/households/{household.pk}/remove_member/",
+            data={"name": name},  # nonexistent member
+            format="json",
+        )
+
+        # Create expected data payload
+        expected = {
+            "name": f"could not find '{name}' in current household"
+        }
+
+        # Assert API response
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(json.loads(response.content), expected)
+
 
 class GrantEligibilityTestCase(APITestCase):
     """TestCases for filtering Household resource using query parameters"""
