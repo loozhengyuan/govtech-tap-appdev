@@ -1,8 +1,6 @@
 # Government Grant Disbursement API
 
-![Main Workflow](https://github.com/loozhengyuan/govtech-tap-appdev/workflows/Main%20Workflow/badge.svg)
-
-[![codecov](https://codecov.io/gh/loozhengyuan/govtech-tap-appdev/branch/master/graph/badge.svg?token=DUHFG0bfko)](https://codecov.io/gh/loozhengyuan/govtech-tap-appdev)
+![Main Workflow](https://github.com/loozhengyuan/govtech-tap-appdev/workflows/Main%20Workflow/badge.svg) [![codecov](https://codecov.io/gh/loozhengyuan/govtech-tap-appdev/branch/master/graph/badge.svg?token=DUHFG0bfko)](https://codecov.io/gh/loozhengyuan/govtech-tap-appdev)
 
 This project is done in fulfillment for the assessment requirements of GovTech's Technology Associate Program.
 
