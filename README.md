@@ -528,6 +528,8 @@ _NOTE: This endpoint has no API response: `HTTP 204 NO CONTENT`_
 
 This endpoint deletes a member from its associated household.
 
+**Note:** Only the `name` key will be sufficient because a member's name is unique.
+
 <details>
 <summary><b>See Example</b></summary>
 
@@ -536,10 +538,15 @@ curl 127.0.0.1:8000/households/1/remove_member/ \
     -H 'Content-Type: application/json' \
     -H 'Accept: application/json; indent=4' \
     -X DELETE \
-    -d '{"name":"Paul Tan","gender":"Male","marital_status":"Single","spouse":null,"occupation_type":"Employed","annual_income":10000,"dob":"2010-01-01"}'
+    -d '{"name":"Paul Tan"}'
 ```
-
-_NOTE: This endpoint has no API response: `HTTP 204 NO CONTENT`_
+```jsonc
+{
+    "id": 1,
+    "housing_type": "Landed",
+    "members": []
+}
+```
 
 </details>
 

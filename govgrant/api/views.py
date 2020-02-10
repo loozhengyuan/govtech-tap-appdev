@@ -29,9 +29,8 @@ class HouseholdViewSet(viewsets.ModelViewSet):
 
         # Commit changes to return
         # TODO: Return household or just member instance?
-        # TODO: Consider using status.HTTP_201_CREATED?
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @action(detail=True, methods=['delete'])
     def remove_member(self, request, pk=None):
@@ -45,15 +44,28 @@ class HouseholdViewSet(viewsets.ModelViewSet):
             }
             return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
 
-        # Delete object and return Response
+        # Delete object
         # TODO: Consider a better way to destroy model instance.
         # This is only done because the Serializer cannot successfully
         # validate this request object and because the pk of the member
         # cannot be derived from the url route.
-        # TODO: Catch FamilyMember.DoesNotExist exception
-        member = FamilyMember.objects.get(name=name)
-        member.delete()
-        return Response(None, status=status.HTTP_204_NO_CONTENT)
+        household = self.get_object()
+        try:
+            member = FamilyMember.objects.get(
+                name=name,
+                household=household,  # Only if member in current household
+            )
+            member.delete()
+        except FamilyMember.DoesNotExist:
+            data = {
+                "name": f"could not find '{name}' in current household"
+            }
+            return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
+
+        # Refresh household instance
+        household.refresh_from_db()
+        serializer = HouseholdSerializer(household)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def get_queryset(self):
         """
