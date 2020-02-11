@@ -564,8 +564,7 @@ In the task requirements, it is noted that the `spouse` field is left out for th
 This seems to be a deviation from all other endpoints and it does not seem to have a good justification why this was the case,
 thus it shall be assumed that the `spouse` field was intended to be included in all endpoints.
 
-**Family names are unique**
+**Names are unique**
 
-Obviously, this is not a practical assumption but this will make it much easier to interact with the API without dealing with all the primary keys.
-By making this assertion, all `FamilyMember` instances can be referred to by their names because they are unique, e.g. Bob can add "Alice" as it spouse
-without knowing her primary key. Unfortunately though, you will not be able to create a user with the same name.
+Although an unrealistic assumption, this will make it much easier to interact with the API without dealing with all the primary keys of the users.
+By making this assertion, all `FamilyMember` instances can be referred to by their names because they are unique, e.g. Bob can add "Alice" as it spouse without knowing her primary key. Unfortunately though, one will not be able to create a user with the same name.
