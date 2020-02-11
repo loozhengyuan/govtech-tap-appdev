@@ -1,6 +1,6 @@
 # Government Grant Disbursement API
 
-![Main Workflow](https://github.com/loozhengyuan/govtech-tap-appdev/workflows/Main%20Workflow/badge.svg) [![codecov](https://codecov.io/gh/loozhengyuan/govtech-tap-appdev/branch/master/graph/badge.svg?token=DUHFG0bfko)](https://codecov.io/gh/loozhengyuan/govtech-tap-appdev)
+![Main Workflow](https://github.com/loozhengyuan/govtech-tap-appdev/workflows/Main%20Workflow/badge.svg) [![codecov](https://codecov.io/gh/loozhengyuan/govtech-tap-appdev/branch/master/graph/badge.svg)](https://codecov.io/gh/loozhengyuan/govtech-tap-appdev)
 
 This project is done in fulfillment for the assessment requirements of GovTech's Technology Associate Program.
 
@@ -73,8 +73,8 @@ python manage.py runserver
 
 This API primarily allows one to determine the eligible households of a specific grant.
 
-As part of the requirements, the following are the five of the fictitious grants and how its eligible households.
-To better illustrate their usage, the examples provided are based on the sample dataset `sample.json`.
+As part of the requirements, the following are five of the fictitious grants and its eligible households.
+To better illustrate their usage, the examples provided are based on the sample dataset `sample.json` shown below.
 
 <details>
 <summary><b>View Full Sample Dataset</b></summary>
@@ -564,8 +564,7 @@ In the task requirements, it is noted that the `spouse` field is left out for th
 This seems to be a deviation from all other endpoints and it does not seem to have a good justification why this was the case,
 thus it shall be assumed that the `spouse` field was intended to be included in all endpoints.
 
-**Family names are unique**
+**Names are unique**
 
-Obviously, this is not a practical assumption but this will make it much easier to interact with the API without dealing with all the primary keys.
-By making this assertion, all `FamilyMember` instances can be referred to by their names because they are unique, e.g. Bob can add "Alice" as it spouse
-without knowing her primary key. Unfortunately though, you will not be able to create a user with the same name.
+Although an unrealistic assumption, this will make it much easier to interact with the API without dealing with all the primary keys of the users.
+By making this assertion, all `FamilyMember` instances can be referred to by their names because they are unique, e.g. Bob can add "Alice" as it spouse without knowing her primary key. Unfortunately though, one will not be able to create a user with the same name.
