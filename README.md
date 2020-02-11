@@ -73,8 +73,8 @@ python manage.py runserver
 
 This API primarily allows one to determine the eligible households of a specific grant.
 
-As part of the requirements, the following are the five of the fictitious grants and how its eligible households.
-To better illustrate their usage, the examples provided are based on the sample dataset `sample.json`.
+As part of the requirements, the following are five of the fictitious grants and its eligible households.
+To better illustrate their usage, the examples provided are based on the sample dataset `sample.json` shown below.
 
 <details>
 <summary><b>View Full Sample Dataset</b></summary>
